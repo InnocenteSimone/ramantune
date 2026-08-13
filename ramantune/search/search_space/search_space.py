@@ -13,24 +13,26 @@ from ramantune.utils import (
 class SearchSpaceBlock:
     """Represent one configurable category within a search space.
 
+    This class provides a flexible interface for defining hyperparameter search
+    spaces across different pipeline categories (denoising, baseline correction,
+    normalization, feature selection, and classification). It automatically
+    validates parameters to ensure they are valid for the selected algorithm.
+
     Parameters
     ----------
     category : str
-        Pipeline category identifier.
+        Pipeline category identifier (e.g., 'denoising', 'baseline', 'normalize',
+        'feature_selection', 'classifier').
     algorithm_name : str, optional
-        Registry key for the algorithm in ``category``.
+        Registry key for the algorithm in the specified category. Used for
+        registry-based algorithms (preprocessing steps). Default is None.
     params : dict, optional
-        Hyperparameter mapping for the selected algorithm.
+        Hyperparameter mapping for the selected algorithm. All parameters are
+        validated at initialization. Default is an empty dict.
     algorithm_function : object, optional
         Direct algorithm instance used when ``algorithm_name`` is ``None``.
-
-    Raises
-    ------
-    ValueError
-        If ``algorithm_name`` is provided but cannot be resolved in the
-        registry for ``category``.
-    ValueError
-        If any parameter in ``params`` is not valid for the algorithm.
+        Typically used for sklearn estimators (feature selection, classifiers).
+        Default is None.
     """
 
     def __init__(self, category, algorithm_name=None, params=None, algorithm_function=None):
@@ -114,12 +116,17 @@ class SearchSpaceBlock:
 class DenoiserSpace(SearchSpaceBlock):
     """Search-space block for denoising methods.
 
+    Represents a denoising preprocessing step with configurable algorithms
+    from the ramanspy preprocessing registry.
+
     Parameters
     ----------
     algorithm : str
-        Registered denoising algorithm name.
+        Registered denoising algorithm name. Available options depend on the
+        registry (e.g., 'savgol', 'whittaker', 'kernel', 'gaussian').
     params : dict, optional
-        Algorithm hyperparameters.
+        Algorithm hyperparameters. All parameters are validated against the
+        algorithm's valid parameters. Default is None.
     """
 
     def __init__(self, algorithm, params=None):
@@ -129,12 +136,17 @@ class DenoiserSpace(SearchSpaceBlock):
 class BaselineSpace(SearchSpaceBlock):
     """Search-space block for baseline correction methods.
 
+    Represents a baseline correction preprocessing step with configurable
+    algorithms from the ramanspy preprocessing registry.
+
     Parameters
     ----------
     algorithm : str
-        Registered baseline algorithm name.
+        Registered baseline algorithm name. Available options depend on the
+        registry (e.g., 'asls', 'iasls', 'airpls', 'imodpoly', 'poly').
     params : dict, optional
-        Algorithm hyperparameters.
+        Algorithm hyperparameters. All parameters are validated against the
+        algorithm's valid parameters. Default is None.
     """
 
     def __init__(self, algorithm, params=None):
@@ -144,12 +156,17 @@ class BaselineSpace(SearchSpaceBlock):
 class NormalizerSpace(SearchSpaceBlock):
     """Search-space block for normalization methods.
 
+    Represents a normalization preprocessing step with configurable algorithms
+    from the ramanspy preprocessing registry.
+
     Parameters
     ----------
     algorithm : str
-        Registered normalization algorithm name.
+        Registered normalization algorithm name. Available options depend on the
+        registry (e.g., 'vector', 'minmax', 'max_intensity', 'auc').
     params : dict, optional
-        Algorithm hyperparameters.
+        Algorithm hyperparameters. All parameters are validated against the
+        algorithm's valid parameters. Default is None.
     """
 
     def __init__(self, algorithm, params=None):
@@ -159,12 +176,19 @@ class NormalizerSpace(SearchSpaceBlock):
 class FeatureSelectionSpace(SearchSpaceBlock):
     """Search-space block for feature-selection estimators.
 
+    Represents a feature selection step using sklearn-compatible estimators.
+    Unlike preprocessing blocks, this takes a direct estimator instance rather
+    than an algorithm name from the registry.
+
     Parameters
     ----------
     algorithm : object
-        Feature-selection estimator instance.
+        Feature-selection estimator instance. Must be a sklearn-compatible
+        estimator with ``get_params()`` and ``set_params()`` methods.
+        Common choices: ``PCA``, ``SelectKBest``, ``SelectPercentile``, etc.
     params : dict, optional
-        Estimator hyperparameters.
+        Estimator hyperparameters. All parameters are validated using the
+        estimator's ``get_params()`` method. Default is None.
     """
 
     def __init__(self, algorithm, params=None):
@@ -175,17 +199,21 @@ class FeatureSelectionSpace(SearchSpaceBlock):
 class ClassifierSpace(SearchSpaceBlock):
     """Search-space block for classifier estimators.
 
+    Represents a classification step using sklearn-compatible estimators.
+    Accepts either ``ClassifierMixin`` or ``RegressorMixin`` instances,
+    allowing flexibility in model selection.
+
     Parameters
     ----------
-    algorithm : sklearn.base.ClassifierMixin
-        Classifier estimator instance.
+    algorithm : sklearn.base.ClassifierMixin or sklearn.base.RegressorMixin
+        Classifier or regressor estimator instance. Must implement the
+        sklearn estimator interface with ``fit()``, ``predict()``, ``get_params()``,
+        and ``set_params()`` methods.
+        Common choices: ``SVC``, ``RandomForestClassifier``, ``LogisticRegression``,
+        ``SVR``, ``RandomForestRegressor``, etc.
     params : dict, optional
-        Estimator hyperparameters.
-
-    Raises
-    ------
-    ValueError
-        If ``algorithm`` is not a ``ClassifierMixin`` instance.
+        Estimator hyperparameters. All parameters are validated using the
+        estimator's ``get_params()`` method. Default is None.
     """
 
     def __init__(self, algorithm, params=None):
