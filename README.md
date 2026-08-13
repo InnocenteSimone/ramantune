@@ -37,7 +37,7 @@ param_grid = {
     'denoising': [DenoiserSpace('savgol', {'window_length': [7]})],
     'baseline': [BaselineSpace('imodpoly', {'poly_order': [3]})],
     'normalize': [NormalizerSpace('auc')],
-    'feature_selection': [FeatureSelectionSpace(PCA(), {'n_components': [0.99]})],
+    'feature': [FeatureSelectionSpace(PCA(), {'n_components': [0.99]})],
     'classifier': [ClassifierSpace(SVC(), {'C': [1, 10]})],
 }
 
