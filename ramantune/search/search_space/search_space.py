@@ -1,3 +1,4 @@
+import inspect
 from ramantune.utils import default_registry
 from sklearn.base import ClassifierMixin, RegressorMixin
 
@@ -28,6 +29,8 @@ class SearchSpaceBlock:
     ValueError
         If ``algorithm_name`` is provided but cannot be resolved in the
         registry for ``category``.
+    ValueError
+        If any parameter in ``params`` is not valid for the algorithm.
     """
 
     def __init__(self, category, algorithm_name=None, params=None, algorithm_function=None):
@@ -42,6 +45,51 @@ class SearchSpaceBlock:
                 f"Algorithm '{algorithm_name}' not found in category '{category}'. "
                 f"Available: {default_registry.get_available_algorithms(category)}"
             )
+        
+        self._validate_params()
+
+    def _validate_params(self):
+        """Validate that all parameters are valid for the algorithm.
+        
+        Raises
+        ------
+        ValueError
+            If any parameter is not valid for the algorithm.
+        """
+        if not self.params:
+            return
+        
+        valid_params = self._get_valid_params()
+        invalid_params = set(self.params.keys()) - valid_params
+        
+        if invalid_params:
+            raise ValueError(
+                f"Invalid parameters for '{self.algorithm_name or self.algorithm_function.__class__.__name__}': "
+                f"{invalid_params}. Valid parameters: {valid_params}"
+            )
+    
+    def _get_valid_params(self):
+        """Get the set of valid parameter names for the algorithm.
+        
+        For sklearn estimators, uses get_params().
+        For registry-based algorithms, uses inspect to get __init__ parameters.
+        
+        Returns
+        -------
+        set
+            Valid parameter names for the algorithm.
+        """
+        # sklearn estimators have get_params method
+        if hasattr(self.algorithm_function, 'get_params'):
+            return set(self.algorithm_function.get_params(deep=False).keys())
+        
+        # Registry-based algorithms (ramanspy preprocessing classes)
+        if inspect.isclass(self.algorithm_function):
+            sig = inspect.signature(self.algorithm_function.__init__)
+            return set(sig.parameters.keys()) - {'self'}
+        
+        # Fallback for other types
+        return set()
 
     def get_param_grid_with_category(self):
         """Return category-prefixed parameter grid for pipeline usage.

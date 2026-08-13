@@ -359,6 +359,8 @@ class RamanSearch:
             return cv_res
         cv_res.to_csv(file_path, index=False)
 
+        return cv_res
+
 
     def _getPreprocessingString(self, _dataframe, preprocessing):
         df_cat = _dataframe.filter(regex=f"^param_{preprocessing}")
@@ -372,7 +374,8 @@ class RamanSearch:
         # Get the names of the algorithms
         algorithms_string = df_cat_unique.apply(self._getAlgorithmName, axis=1,
                                                 preprocessing_name=f"{preprocessing}").to_dict()
-
+        if preprocessing == CLASSIFIER_STR:
+            df_cat['param_classifier__algorithm'] = df_cat['param_classifier__algorithm'].apply(lambda x: str(x))
         columns = df_cat.columns.values.tolist()
         # Group by the columns and get the indexes
         gr = df_cat.groupby(columns, dropna=False, observed=True).apply(lambda x: x.index.tolist())
