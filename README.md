@@ -68,7 +68,7 @@ In Raman-based classification tasks, preprocessing is critical. Decisions about 
 
 ## Documentation
 
-Full documentation is available at: [https://github.com/InnocenteSimone/ramantune](https://github.com/InnocenteSimone/ramantune)
+Full documentation is available [here](https://innocentesimone.github.io/ramantune/)
 
 Key topics:
 - [Search Space Configuration](doc/search_space.rst) - Define parameter grids with automatic validation
