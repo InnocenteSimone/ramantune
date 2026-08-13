@@ -1,0 +1,8 @@
+ALGORITHM_STR = "algorithm"
+DENOISING_STR = "denoising"
+BASELINE_STR = "baseline"
+NORMALIZE_STR = "normalize"
+FEATURE_SELECTION_STR = "feature"
+CLASSIFIER_STR = "classifier"
+TO_SPECTRA_STR = "to_spectra"
+TO_VALUES_STR = "to_values"
