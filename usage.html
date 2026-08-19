@@ -1,0 +1,736 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Usage &#8212; ramantune</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'usage';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Utilities" href="utils.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ramantune</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="search_space.html">
+    Search Space
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramanpipeline.html">
+    Raman Pipeline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramansearch.html">
+    Raman Search
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="utils.html">
+    Utilities
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Usage
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/InnocenteSimone/ramantune/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/ramantune/0.0.1/" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-python fa-lg" aria-hidden="true"></i><span class="visually-hidden">PyPI</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="search_space.html">
+    Search Space
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramanpipeline.html">
+    Raman Pipeline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramansearch.html">
+    Raman Search
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="utils.html">
+    Utilities
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Usage
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/InnocenteSimone/ramantune/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/ramantune/0.0.1/" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-python fa-lg" aria-hidden="true"></i><span class="visually-hidden">PyPI</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Usage</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>ramantune
+</pre></div>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Import the necessary modules</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">ramantune.pipeline</span> <span class="kn">import</span> <span class="n">RamanPipeline</span>
+<span class="kn">from</span> <span class="nn">ramantune.search</span> <span class="kn">import</span> <span class="n">RamanSearch</span>
+<span class="kn">from</span> <span class="nn">ramantune.search.strategies</span> <span class="kn">import</span> <span class="n">GridSearchStrategy</span>
+<span class="kn">from</span> <span class="nn">ramantune.search.search_space</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DenoiserSpace</span><span class="p">,</span> <span class="n">BaselineSpace</span><span class="p">,</span> <span class="n">NormalizerSpace</span><span class="p">,</span>
+    <span class="n">FeatureSelectionSpace</span><span class="p">,</span> <span class="n">ClassifierSpace</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ramantune.utils.config</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DENOISING_STR</span><span class="p">,</span> <span class="n">BASELINE_STR</span><span class="p">,</span> <span class="n">NORMALIZE_STR</span><span class="p">,</span>
+    <span class="n">FEATURE_SELECTION_STR</span><span class="p">,</span> <span class="n">CLASSIFIER_STR</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Prepare your data</strong></p></li>
+</ol>
+<p>Ensure you have your dataset ready with features and labels properly separated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;your_data.csv&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Define the search space</strong></p></li>
+</ol>
+<p>Define the search space for each block of the Raman Pipeline. Parameters are
+automatically validated—if you specify invalid parameters, a descriptive error
+will be raised.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">denoiser_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">DenoiserSpace</span><span class="p">(</span><span class="s2">&quot;savgol&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;window_length&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="s2">&quot;polyorder&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]}),</span>
+<span class="p">]</span>
+
+<span class="n">baseline_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">BaselineSpace</span><span class="p">(</span><span class="s2">&quot;imodpoly&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;poly_order&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">]}),</span>
+    <span class="n">BaselineSpace</span><span class="p">(</span><span class="s2">&quot;asls&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;lam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">]})</span>
+<span class="p">]</span>
+
+<span class="n">normalization_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">NormalizerSpace</span><span class="p">(</span><span class="s2">&quot;auc&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">feature_selection_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FeatureSelectionSpace</span><span class="p">(</span><span class="n">PCA</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;n_components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.99</span><span class="p">,</span> <span class="mi">12</span><span class="p">]}),</span>
+<span class="p">]</span>
+
+<span class="n">classifier_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">ClassifierSpace</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rbf&quot;</span><span class="p">],</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]}),</span>
+<span class="p">]</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">DENOISING_STR</span><span class="p">:</span> <span class="n">denoiser_list</span><span class="p">,</span>
+    <span class="n">BASELINE_STR</span><span class="p">:</span> <span class="n">baseline_list</span><span class="p">,</span>
+    <span class="n">NORMALIZE_STR</span><span class="p">:</span> <span class="n">normalization_list</span><span class="p">,</span>
+    <span class="n">FEATURE_SELECTION_STR</span><span class="p">:</span> <span class="n">feature_selection_list</span><span class="p">,</span>
+    <span class="n">CLASSIFIER_STR</span><span class="p">:</span> <span class="n">classifier_list</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> All parameters are validated at initialization. If you specify an
+invalid parameter, you’ll get a helpful error message listing the valid options
+for that algorithm.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Setup pipeline and search</strong></p></li>
+</ol>
+<p>Create a RamanPipeline and RamanSearch instance to find the best combination
+of preprocessing steps and model hyperparameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span> <span class="o">=</span> <span class="n">RamanPipeline</span><span class="p">()</span>
+
+<span class="n">search</span> <span class="o">=</span> <span class="n">RamanSearch</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+    <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">refit</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span>
+<span class="p">)</span>
+
+<span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Retrieve results</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get best parameters and score</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">get_best_params</span><span class="p">()</span>
+<span class="n">best_score</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">get_best_score</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best parameters: </span><span class="si">{</span><span class="n">best_params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best score: </span><span class="si">{</span><span class="n">best_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Save all results to CSV</span>
+<span class="n">search</span><span class="o">.</span><span class="n">get_cv_results</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;results.csv&quot;</span><span class="p">)</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;results.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameter-validation">
+<h2>Parameter Validation<a class="headerlink" href="#parameter-validation" title="Link to this heading">#</a></h2>
+<p>All search space blocks validate their parameters at initialization. This ensures
+you catch configuration errors early with clear, actionable error messages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ramantune.search.search_space</span> <span class="kn">import</span> <span class="n">DenoiserSpace</span><span class="p">,</span> <span class="n">ClassifierSpace</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># Valid parameter - works silently</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">DenoiserSpace</span><span class="p">(</span><span class="s2">&quot;savgol&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;window_length&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
+
+<span class="c1"># Invalid parameter - raises informative ValueError</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">space</span> <span class="o">=</span> <span class="n">DenoiserSpace</span><span class="p">(</span><span class="s2">&quot;savgol&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;invalid_param&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1"># Output: Invalid parameters for &#39;savgol&#39;: {&#39;invalid_param&#39;}.</span>
+    <span class="c1">#         Valid parameters: {&#39;window_length&#39;, &#39;polyorder&#39;, &#39;mode&#39;, ...}</span>
+</pre></div>
+</div>
+<p>The validation works for all block types:</p>
+<ul class="simple">
+<li><p><strong>Preprocessing blocks</strong> (Denoiser, Baseline, Normalizer): Validate against the
+ramanspy class <code class="docutils literal notranslate"><span class="pre">__init__</span></code> parameters</p></li>
+<li><p><strong>Sklearn blocks</strong> (FeatureSelection, Classifier): Validate against the
+estimator’s <code class="docutils literal notranslate"><span class="pre">get_params()</span></code></p></li>
+</ul>
+</section>
+<section id="adding-custom-preprocessing-algorithms">
+<h2>Adding Custom Preprocessing Algorithms<a class="headerlink" href="#adding-custom-preprocessing-algorithms" title="Link to this heading">#</a></h2>
+<p>You can extend Ramantune with custom preprocessing algorithms by implementing
+a class and registering it.</p>
+<ol class="arabic simple">
+<li><p><strong>Create the custom class</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ramantune.custom</span> <span class="kn">import</span> <span class="n">RamanPipelineStep</span>
+<span class="kn">from</span> <span class="nn">ramantune.utils</span> <span class="kn">import</span> <span class="n">register_algorithm</span>
+<span class="kn">from</span> <span class="nn">ramantune.utils.config</span> <span class="kn">import</span> <span class="n">NORMALIZE_STR</span>
+
+<span class="nd">@register_algorithm</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">NORMALIZE_STR</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;snv&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">SNVNormalization</span><span class="p">(</span><span class="n">RamanPipelineStep</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Standard Normal Variate normalization.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        scale : float, optional</span>
+<span class="sd">            Scaling factor (default: 1.0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snv_normalization</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">snv_normalization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spectral_data</span><span class="p">,</span> <span class="n">spectral_axis</span><span class="p">):</span>
+        <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">spectral_data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">spectral_data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">spectral_data</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">std</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">),</span> <span class="n">spectral_axis</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Use the custom algorithm in your search space</strong></p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">normalization_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">NormalizerSpace</span><span class="p">(</span><span class="s2">&quot;auc&quot;</span><span class="p">),</span>
+    <span class="n">NormalizerSpace</span><span class="p">(</span><span class="s2">&quot;snv&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]})</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The custom algorithm will now be part of your parameter grid and will be
+automatically validated along with other parameters.</p>
+</section>
+<section id="common-errors">
+<h2>Common Errors<a class="headerlink" href="#common-errors" title="Link to this heading">#</a></h2>
+<p><strong>ValueError: Invalid parameters for ‘SVC’</strong></p>
+<p>This error occurs when you specify a parameter that doesn’t exist for the algorithm.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRONG - &#39;invalid_param&#39; is not a valid SVC parameter</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">ClassifierSpace</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;invalid_param&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="c1"># RIGHT - use valid SVC parameters</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">ClassifierSpace</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="s2">&quot;rbf&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>To see available parameters, check the algorithm’s documentation or catch the
+error message which lists all valid parameters.</p>
+<p><strong>ValueError: Algorithm not found in category</strong></p>
+<p>This error occurs when you specify an algorithm name that doesn’t exist in the registry.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRONG - &#39;nonexistent&#39; is not a registered denoising algorithm</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">DenoiserSpace</span><span class="p">(</span><span class="s2">&quot;nonexistent&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+<span class="c1"># RIGHT - use a registered algorithm</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">DenoiserSpace</span><span class="p">(</span><span class="s2">&quot;savgol&quot;</span><span class="p">,</span> <span class="p">{})</span>
+</pre></div>
+</div>
+<p>Check the registry or the API reference for available algorithms in each category.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="utils.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Utilities</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-validation">Parameter Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-custom-preprocessing-algorithms">Adding Custom Preprocessing Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-errors">Common Errors</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/usage.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Simone Innocente.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Search Space &#8212; ramantune</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'search_space';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Raman Pipeline" href="ramanpipeline.html" />
+    <link rel="prev" title="Ramantune Documentation" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ramantune</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Search Space
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramanpipeline.html">
+    Raman Pipeline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramansearch.html">
+    Raman Search
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="utils.html">
+    Utilities
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="usage.html">
+    Usage
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/InnocenteSimone/ramantune/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/ramantune/0.0.1/" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-python fa-lg" aria-hidden="true"></i><span class="visually-hidden">PyPI</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Search Space
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramanpipeline.html">
+    Raman Pipeline
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="ramansearch.html">
+    Raman Search
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="utils.html">
+    Utilities
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="usage.html">
+    Usage
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/InnocenteSimone/ramantune/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/ramantune/0.0.1/" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-python fa-lg" aria-hidden="true"></i><span class="visually-hidden">PyPI</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Search Space</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="search-space">
+<h1>Search Space<a class="headerlink" href="#search-space" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ramantune.search.search_space</span></code> module provides composable building
+blocks to construct hyperparameter search spaces for Raman analysis
+pipelines. It defines a small set of <code class="docutils literal notranslate"><span class="pre">SearchSpaceBlock</span></code> subclasses that
+represent configurable pipeline categories (for example denoising,
+baseline correction, normalization, feature selection and classification).</p>
+<p>Each block can emit either an unprefixed parameter mapping or a category-
+prefixed mapping (<code class="docutils literal notranslate"><span class="pre">&quot;{category}__{parameter}&quot;</span></code>) that is directly
+consumable by scikit-learn-style pipeline search utilities. These blocks
+are intended to be composed into a <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> which can then be used
+by higher-level search orchestrators such as <code class="docutils literal notranslate"><span class="pre">RamanSearch</span></code>.</p>
+</section>
+<section id="usage-example">
+<h2>Usage example<a class="headerlink" href="#usage-example" title="Link to this heading">#</a></h2>
+<p>A minimal example showing how to assemble a parameter grid.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ramantune.search.search_space.search_space</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DenoiserSpace</span><span class="p">,</span> <span class="n">BaselineSpace</span><span class="p">,</span> <span class="n">NormalizerSpace</span><span class="p">,</span>
+    <span class="n">FeatureSelectionSpace</span><span class="p">,</span> <span class="n">ClassifierSpace</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">ramantune.utils.config</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DENOISING_STR</span><span class="p">,</span> <span class="n">BASELINE_STR</span><span class="p">,</span>
+    <span class="n">NORMALIZE_STR</span><span class="p">,</span> <span class="n">FEATURE_SELECTION_STR</span><span class="p">,</span> <span class="n">CLASSIFIER_STR</span>
+<span class="p">)</span>
+
+<span class="n">denoiser_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">DenoiserSpace</span><span class="p">(</span><span class="s2">&quot;savgol&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;window_length&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="s2">&quot;polyorder&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]}),</span>
+<span class="p">]</span>
+
+<span class="n">baseline_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">BaselineSpace</span><span class="p">(</span><span class="s2">&quot;imodpoly&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;poly_order&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">]}),</span>
+    <span class="n">BaselineSpace</span><span class="p">(</span><span class="s2">&quot;asls&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;lam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e3</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">]})</span>
+<span class="p">]</span>
+
+<span class="n">normalization_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">NormalizerSpace</span><span class="p">(</span><span class="s2">&quot;auc&quot;</span><span class="p">)]</span>
+
+<span class="n">feature_selection_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">FeatureSelectionSpace</span><span class="p">(</span><span class="n">PCA</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;n_components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.99</span><span class="p">,</span> <span class="mi">12</span><span class="p">]}),</span>
+    <span class="n">FeatureSelectionSpace</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">classifier_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">ClassifierSpace</span><span class="p">(</span><span class="n">SVC</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rbf&quot;</span><span class="p">],</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]}),</span>
+<span class="p">]</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">DENOISING_STR</span><span class="p">:</span> <span class="n">denoiser_list</span><span class="p">,</span>
+    <span class="n">BASELINE_STR</span><span class="p">:</span> <span class="n">baseline_list</span><span class="p">,</span>
+    <span class="n">NORMALIZE_STR</span><span class="p">:</span> <span class="n">normalization_list</span><span class="p">,</span>
+    <span class="n">FEATURE_SELECTION_STR</span><span class="p">:</span> <span class="n">feature_selection_list</span><span class="p">,</span>
+    <span class="n">CLASSIFIER_STR</span><span class="p">:</span> <span class="n">classifier_list</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> can be passed to <code class="docutils literal notranslate"><span class="pre">RamanSearch</span></code> or to a strategy
+setup method to generate the concrete candidate parameter dictionaries.</p>
+</section>
+<section id="module-ramantune.search.search_space.search_space">
+<span id="api-reference"></span><h2>API Reference<a class="headerlink" href="#module-ramantune.search.search_space.search_space" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.SearchSpaceBlock">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SearchSpaceBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.SearchSpaceBlock" title="Link to this definition">#</a></dt>
+<dd><p>Represent one configurable category within a search space.</p>
+<p>This class provides a flexible interface for defining hyperparameter search
+spaces across different pipeline categories (denoising, baseline correction,
+normalization, feature selection, and classification). It automatically
+validates parameters to ensure they are valid for the selected algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>category</strong> (<em>str</em>) – Pipeline category identifier (e.g., ‘denoising’, ‘baseline’, ‘normalize’,
+‘feature_selection’, ‘classifier’).</p></li>
+<li><p><strong>algorithm_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Registry key for the algorithm in the specified category. Used for
+registry-based algorithms (preprocessing steps). Default is None.</p></li>
+<li><p><strong>params</strong> (<em>dict</em><em>, </em><em>optional</em>) – Hyperparameter mapping for the selected algorithm. All parameters are
+validated at initialization. Default is an empty dict.</p></li>
+<li><p><strong>algorithm_function</strong> (<em>object</em><em>, </em><em>optional</em>) – Direct algorithm instance used when <code class="docutils literal notranslate"><span class="pre">algorithm_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Typically used for sklearn estimators (feature selection, classifiers).
+Default is None.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.SearchSpaceBlock.get_param_grid_with_category">
+<span class="sig-name descname"><span class="pre">get_param_grid_with_category</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.SearchSpaceBlock.get_param_grid_with_category" title="Link to this definition">#</a></dt>
+<dd><p>Return category-prefixed parameter grid for pipeline usage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Parameter mapping with keys prefixed as
+<code class="docutils literal notranslate"><span class="pre">&quot;{category}__{parameter}&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">algorithm_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">algorithm_function</span></code> is emitted
+directly as the algorithm value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.DenoiserSpace">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DenoiserSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.DenoiserSpace" title="Link to this definition">#</a></dt>
+<dd><p>Search-space block for denoising methods.</p>
+<p>Represents a denoising preprocessing step with configurable algorithms
+from the ramanspy preprocessing registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algorithm</strong> (<em>str</em>) – Registered denoising algorithm name. Available options depend on the
+registry (e.g., ‘savgol’, ‘whittaker’, ‘kernel’, ‘gaussian’).</p></li>
+<li><p><strong>params</strong> (<em>dict</em><em>, </em><em>optional</em>) – Algorithm hyperparameters. All parameters are validated against the
+algorithm’s valid parameters. Default is None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.BaselineSpace">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">BaselineSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.BaselineSpace" title="Link to this definition">#</a></dt>
+<dd><p>Search-space block for baseline correction methods.</p>
+<p>Represents a baseline correction preprocessing step with configurable
+algorithms from the ramanspy preprocessing registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algorithm</strong> (<em>str</em>) – Registered baseline algorithm name. Available options depend on the
+registry (e.g., ‘asls’, ‘iasls’, ‘airpls’, ‘imodpoly’, ‘poly’).</p></li>
+<li><p><strong>params</strong> (<em>dict</em><em>, </em><em>optional</em>) – Algorithm hyperparameters. All parameters are validated against the
+algorithm’s valid parameters. Default is None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.NormalizerSpace">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NormalizerSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.NormalizerSpace" title="Link to this definition">#</a></dt>
+<dd><p>Search-space block for normalization methods.</p>
+<p>Represents a normalization preprocessing step with configurable algorithms
+from the ramanspy preprocessing registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algorithm</strong> (<em>str</em>) – Registered normalization algorithm name. Available options depend on the
+registry (e.g., ‘vector’, ‘minmax’, ‘max_intensity’, ‘auc’).</p></li>
+<li><p><strong>params</strong> (<em>dict</em><em>, </em><em>optional</em>) – Algorithm hyperparameters. All parameters are validated against the
+algorithm’s valid parameters. Default is None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.FeatureSelectionSpace">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">FeatureSelectionSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.FeatureSelectionSpace" title="Link to this definition">#</a></dt>
+<dd><p>Search-space block for feature-selection estimators.</p>
+<p>Represents a feature selection step using sklearn-compatible estimators.
+Unlike preprocessing blocks, this takes a direct estimator instance rather
+than an algorithm name from the registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algorithm</strong> (<em>object</em>) – Feature-selection estimator instance. Must be a sklearn-compatible
+estimator with <code class="docutils literal notranslate"><span class="pre">get_params()</span></code> and <code class="docutils literal notranslate"><span class="pre">set_params()</span></code> methods.
+Common choices: <code class="docutils literal notranslate"><span class="pre">PCA</span></code>, <code class="docutils literal notranslate"><span class="pre">SelectKBest</span></code>, <code class="docutils literal notranslate"><span class="pre">SelectPercentile</span></code>, etc.</p></li>
+<li><p><strong>params</strong> (<em>dict</em><em>, </em><em>optional</em>) – Estimator hyperparameters. All parameters are validated using the
+estimator’s <code class="docutils literal notranslate"><span class="pre">get_params()</span></code> method. Default is None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ramantune.search.search_space.search_space.ClassifierSpace">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ClassifierSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">algorithm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ramantune.search.search_space.search_space.ClassifierSpace" title="Link to this definition">#</a></dt>
+<dd><p>Search-space block for classifier estimators.</p>
+<p>Represents a classification step using sklearn-compatible estimators.
+Accepts either <code class="docutils literal notranslate"><span class="pre">ClassifierMixin</span></code> or <code class="docutils literal notranslate"><span class="pre">RegressorMixin</span></code> instances,
+allowing flexibility in model selection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>algorithm</strong> (<em>sklearn.base.ClassifierMixin</em><em> or </em><em>sklearn.base.RegressorMixin</em>) – Classifier or regressor estimator instance. Must implement the
+sklearn estimator interface with <code class="docutils literal notranslate"><span class="pre">fit()</span></code>, <code class="docutils literal notranslate"><span class="pre">predict()</span></code>, <code class="docutils literal notranslate"><span class="pre">get_params()</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">set_params()</span></code> methods.
+Common choices: <code class="docutils literal notranslate"><span class="pre">SVC</span></code>, <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code>, <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SVR</span></code>, <code class="docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code>, etc.</p></li>
+<li><p><strong>params</strong> (<em>dict</em><em>, </em><em>optional</em>) – Estimator hyperparameters. All parameters are validated using the
+estimator’s <code class="docutils literal notranslate"><span class="pre">get_params()</span></code> method. Default is None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ramantune Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ramanpipeline.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Raman Pipeline</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-example">Usage example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ramantune.search.search_space.search_space">API Reference</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.SearchSpaceBlock"><code class="docutils literal notranslate"><span class="pre">SearchSpaceBlock</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.SearchSpaceBlock.get_param_grid_with_category"><code class="docutils literal notranslate"><span class="pre">SearchSpaceBlock.get_param_grid_with_category()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.DenoiserSpace"><code class="docutils literal notranslate"><span class="pre">DenoiserSpace</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.BaselineSpace"><code class="docutils literal notranslate"><span class="pre">BaselineSpace</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.NormalizerSpace"><code class="docutils literal notranslate"><span class="pre">NormalizerSpace</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.FeatureSelectionSpace"><code class="docutils literal notranslate"><span class="pre">FeatureSelectionSpace</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ramantune.search.search_space.search_space.ClassifierSpace"><code class="docutils literal notranslate"><span class="pre">ClassifierSpace</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/search_space.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Simone Innocente.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
