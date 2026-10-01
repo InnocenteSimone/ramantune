@@ -149,6 +149,8 @@ def extract_best_split_scores(cv_res, best_idx):
 
 if __name__ == "__main__":
 
+    dataset = "covid" # ovarian,melanoma
+
     X, y, patients = ... # Setup the dataset, coid, melanoma, or covid
 
     # Crop the spectra
@@ -170,28 +172,77 @@ if __name__ == "__main__":
 
     for rs in RANDOM_SEEDS:
         print(f"Random Seed: {rs}")
-        estimator = RamanPipeline()
+        FILEPATH_STORE_RESULTS = f'{dataset}_nested_{rs}.csv'
 
-        cv = StratifiedGroupKFold(n_splits=10, shuffle=True, random_state=rs)
+        outer_results = []
+        outer_cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=rs)
 
-        search = RamanSearch(estimator=estimator,
-                             research_strategy=GridSearchStrategy(),
-                             param_grid=param_grid,
-                             cv=cv,
-                             return_train_score=True,
-                             compute_is_score=True,
-                             n_jobs=1,
-                             verbose=10,
-                             refit="accuracy")
+        for outer_fold, (train_idx, test_idx) in enumerate(outer_cv.split(X_preprocessed, y), start=1):
+            print(f"\n{'=' * 80}")
+            print(f"Outer fold {outer_fold}/10")
+            print(f"{'=' * 80}")
+            X_train = X_preprocessed.iloc[train_idx]
+            X_test = X_preprocessed.iloc[test_idx]
 
-        start = time.perf_counter()
-        res = search.fit(X_preprocessed, y, groups=patients)
-        end = time.perf_counter()
-        print(f"Fitted GridSearch for Ovarian dataset with random seed {rs}")
+            y_train = y[train_idx]
+            y_test = y[test_idx]
 
-        accuracies.extend(extract_best_split_scores(res.cv_results_, res.best_index_))
+            groups_train = patients[train_idx]
+            groups_test = patients[test_idx]
 
-    accuracies = np.array(accuracies)
-    results = pd.DataFrame(accuracies, columns=['RamanPipeline'])
-    results.to_csv(..., index=False)
+            inner_cv = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=rs + 1000)
 
+            estimator = RamanPipeline()
+
+            search = RamanSearch(
+                estimator=estimator,
+                research_strategy=GridSearchStrategy(),
+                param_grid=param_grid,
+                cv=inner_cv,
+                return_train_score=True,
+                n_jobs=2,
+                verbose=10,
+                refit="accuracy",
+                compute_is_score=True
+            )
+
+            start = time.perf_counter()
+            search.fit(X_train, y_train, groups=groups_train)
+            end = time.perf_counter()
+
+            print(f"Inner HPO completed in {(end - start) / 60:.2f} min")
+
+            best_model = search.research.get_research().best_estimator_
+
+            y_pred = best_model.predict(X_test)
+
+            outer_accuracy = np.mean(y_pred == y_test)
+
+            print(f"Outer fold {outer_fold} accuracy: {outer_accuracy:.4f}")
+
+            outer_results.append({
+                "seed": rs,
+                "outer_fold": outer_fold,
+                "accuracy": outer_accuracy,
+                "n_train": len(train_idx),
+                "n_test": len(test_idx),
+                "best_params": search.research.get_research().best_params_
+            })
+
+            cv_res = pd.DataFrame(search.get_cv_results())
+            cv_res.to_csv(f"nested_cv_results/{dataset}/outer/cv_res_nested_outer_fold_{outer_fold}_{dataset}_{rs}.csv",
+                          index=False)
+
+        results = pd.DataFrame(outer_results)
+
+        results.to_csv(FILEPATH_STORE_RESULTS, index=False)
+
+        print("\nNested CV results:")
+        print(results[["outer_fold", "accuracy", "n_train", "n_test"]])
+        print(f"Std outer accuracy: {results['accuracy'].std():.4f}")
+        print("Ended")
+
+if __name__ == "__main__":
+    # seed = int(sys.argv[1])
+    seed = 42
+    run_nested_cv(seed=seed)
