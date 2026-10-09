@@ -1,9 +1,11 @@
 import os
+import re
 import time
 import numpy as np
 import pandas as pd
 import ramanspy as rp
 import ramanspy.preprocessing as rpr
+from pathlib import Path
 
 from pathlib import Path
 from sklearn.model_selection import StratifiedKFold, GridSearchCV, StratifiedGroupKFold
@@ -14,46 +16,51 @@ from ramantune.utils.config import DENOISING_STR, BASELINE_STR, NORMALIZE_STR, F
 from ramantune.search.strategies import GridSearchStrategy
 from ramantune.search import RamanSearch
 
-def ovarian_create_df(filepath, patient_counter = 1):
-    FILEPATH_OVARIAN_HEALTHY_FIRST = Path("plasma_HC_1_10sec_5lp_2acc3 (1).txt") # Path to the first healthy ovarian Raman data file
-    first = np.loadtxt(FILEPATH_OVARIAN_HEALTHY_FIRST)
-    frequencies = [str(el) for el in pd.DataFrame(first)[0].values]
-    intensities = []
+def ovarian_rows(folder, label, offset):
+    rows = []
 
-    previous_patient = None
-    patient = []
+    for path in sorted(folder.glob("*.txt")):
+        match = re.search(r"plasma_(HC|OC)_(\d+)_", path.name)
+        source_patient_id = int(match.group(2))
 
-    for root, dirs, files in os.walk(filepath):
-        for f in files:
-            path = filepath / f
-            tmp = pd.DataFrame(np.loadtxt(path))
-            if tmp.shape[0] > 1480:
-                print("Higher number of frequencies")
-                tmp = tmp.iloc[:1480]
+        raw = np.loadtxt(path)[:1480]  # drops extra points in 11 files
+        axis = raw[:, 0]
+        intensity = raw[:, 1]
 
-            if previous_patient is not None and int(f.split("_")[2]) != previous_patient:
-                patient_counter += 1
+        # Raw files are high-to-low shift; make feature columns ascending.
+        rows.append({
+            **dict(zip(axis[::-1], intensity[::-1])),
+            "patient": source_patient_id + offset,
+            "label": label,
+        })
 
-            patient.append(patient_counter)
-            previous_patient = int(f.split("_")[2])
-            intensities.append(tmp[1].values)
+    return rows
 
-    df = pd.DataFrame(intensities, columns=frequencies)
-    df = df[df.columns.values[::-1]]
-    df['patient'] = [str(el) for el in patient]
-    return df, patient_counter
 
 def format_ovarian_dataset():
-    FILEPATH_HEALTHY = "..." # Path to healthy folder
-    FILEPATH_OVARIAN = "..." # Path to ovarian cancer folder
+    FILEPATH_OVARIAN = "..." # Path to the ovarian cancer dataset
+    root = Path(FILEPATH)
 
-    df_h, patients = ovarian_create_df(FILEPATH_HEALTHY, patient_counter=1)
-    df_h['label'] = "HC"
-    df_o, _ = ovarian_create_df(FILEPATH_OVARIAN, patient_counter=patients + 1)
-    df_o['label'] = "OC"
+    out = Path("bin")
+    out.mkdir(exist_ok=True)
 
-    df = pd.DataFrame()
-    df = pd.concat([df_h, df_o])
+    rows = (
+            ovarian_rows(root / "Healthy", "HC", offset=0)
+            + ovarian_rows(root / "Ovarian_Cancer", "OC", offset=28)
+    )
+
+    df = pd.DataFrame(rows)
+    feature_columns = sorted(c for c in df.columns if isinstance(c, float))
+    df = df[feature_columns + ["patient", "label"]]
+
+    df.to_csv(out / "ovarian.csv", index=False)
+
+    # The compact, 42-spectrum dataset used by example.ipynb:
+    small = df[df["patient"].isin([1, 2, 3, 29, 30, 31])]
+    small.to_csv(out / "ovarian_small.csv", index=False)
+
+    print(df.shape)  # (385, 1482): 1480 spectral columns + patient + label
+    print(small.shape)  # (42, 1482)
 
     return df
 
@@ -78,12 +85,10 @@ def format_covid_dataset():
     raw_T = pd.DataFrame(np.loadtxt(FILEPATH_RAW_TUBE).T, columns=wn)
     raw_T['label'] = "TUBE"
 
-    df = pd.DataFrame()
     df = pd.concat([raw_C, raw_S, raw_H, raw_T])
     df = df.drop(columns=[400.0, 2112.0])
 
     return df
-
 
 
 def apply_preprocessing(row, pip):
@@ -112,19 +117,17 @@ def setup_param_grid():
   baseline_list = [
       BaselineSpace("modpoly", {"poly_order": [4]}),
       BaselineSpace("bubblefill", {"min_bubble_widths": [100]}),
-      BaselineSpace("iasls", {"lam": [100], "p": [0.001]}),
       BaselineSpace("asls", {"lam": [100]}),
   ]
 
   normalization_list = [
-      NormalizerSpace("vector"),
-      NormalizerSpace("auc"),
+      NormalizerSpace("snv"),
       NormalizerSpace("vector"),
   ]
 
 
   classifier_list = [
-      ClassifierSpace(SVC(),{"C": [0.1, 1, 10, 100], "gamma": [0.1, 0.01, 0.001, "scale"], "kernel": ["linear", "rbf"]})
+      ClassifierSpace(SVC(),{"C": [1, 10, 100], "gamma": [0.1, 0.001, "scale"], "kernel": ["linear", "rbf"]})
   ]
 
   param_list = {
@@ -137,21 +140,14 @@ def setup_param_grid():
   return param_list
 
 
-def extract_best_split_scores(cv_res, best_idx):
-    # find all split test score columns
-    split_cols = [c for c in cv_res if c.startswith("split") and c.endswith("_test_accuracy")]
-    # sort them numerically
-    split_cols = sorted(split_cols, key=lambda x: int(x.split('_')[0][5:]))
-
-    # extract the per-split scores for the best hyperparameters
-    return np.array([cv_res[col][best_idx] for col in split_cols])
-
-
 if __name__ == "__main__":
 
-    dataset = "covid" # ovarian,melanoma
+    dataset = "ovarian" # covid,melanoma
 
-    X, y, patients = ... # Setup the dataset, coid, melanoma, or covid
+    df = format_ovarian_dataset() # Setup the dataset, coid, melanoma, or covid
+    patients = df['patient'].values
+    y = df['label'].values
+    X = df.drop(columns=['label', 'patient']).valeus
 
     # Crop the spectra
     # Ovarian region: (500,1800)
@@ -167,8 +163,6 @@ if __name__ == "__main__":
     param_grid = setup_param_grid()
 
     RANDOM_SEEDS = [17, 42, 73, 101, 256, 389, 512, 777, 1024, 2025]
-
-    accuracies = []
 
     for rs in RANDOM_SEEDS:
         print(f"Random Seed: {rs}")
@@ -241,8 +235,3 @@ if __name__ == "__main__":
         print(results[["outer_fold", "accuracy", "n_train", "n_test"]])
         print(f"Std outer accuracy: {results['accuracy'].std():.4f}")
         print("Ended")
-
-if __name__ == "__main__":
-    # seed = int(sys.argv[1])
-    seed = 42
-    run_nested_cv(seed=seed)
