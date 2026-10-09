@@ -39,7 +39,7 @@ def ovarian_rows(folder, label, offset):
 
 def format_ovarian_dataset():
     FILEPATH_OVARIAN = "..." # Path to the ovarian cancer dataset
-    root = Path(FILEPATH)
+    root = Path(FILEPATH_OVARIAN)
 
     out = Path("bin")
     out.mkdir(exist_ok=True)
